@@ -32,19 +32,19 @@ class VoteManager: NSObject {
 
     func likes() -> Array<Vote> {
         return self.votes.filter {
-            $0 == Vote.Like
+            $0.isLike
         }
     }
     
     func neutrals() -> Array<Vote> {
         return self.votes.filter {
-            $0 == Vote.Neutral
+            $0.isNeutral
         }
     }
     
     func hates() -> Array<Vote> {
         return self.votes.filter {
-            $0 == Vote.Hate
+            $0.isHate
         }
     }
     
@@ -58,7 +58,7 @@ class VoteManager: NSObject {
         if let median = grouppedVotes[1].last {
             return median
         } else {
-            return Vote.None
+            return Vote.None(NSDate(), "")
         }
     }
     

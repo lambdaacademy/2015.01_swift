@@ -33,19 +33,19 @@ class ViewController: UIViewController, XYPieChartDataSource {
     
     // Actions
     @IBAction func smileButtonPressed(sender: UIButton) {
-        self.vm.makeVote(Vote.Like)
+        self.vm.makeVote(Vote.Like(NSDate(), "ABC"))
         self.animateButton(sender)
         self.pieChart.reloadData();
     }
     
     @IBAction func donnoPressed(sender: UIButton) {
-        self.vm.makeVote(Vote.Neutral)
+        self.vm.makeVote(Vote.Neutral(NSDate(), "ABC"))
         self.animateButton(sender)
         self.pieChart.reloadData();
     }
     
     @IBAction func cryingPressed(sender: UIButton) {
-        self.vm.makeVote(Vote.Hate)
+        self.vm.makeVote(Vote.Hate(NSDate(), "ABC"))
         self.animateButton(sender)
         self.pieChart.reloadData();
     }
