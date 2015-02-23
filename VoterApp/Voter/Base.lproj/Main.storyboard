@@ -112,13 +112,16 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jZs-lO-518">
                                 <rect key="frame" x="791" y="560" width="134" height="128"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lambda_academy_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="VZg-EI-d24">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lambda_academy_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="VZg-EI-d24">
                                 <rect key="frame" x="46" y="560" width="240" height="128"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="8Ym-gf-4rw"/>
                                     <constraint firstAttribute="width" secondItem="VZg-EI-d24" secondAttribute="height" multiplier="15:8" id="ecq-LD-7jj"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qSN-er-ndb" appends="YES" id="9mp-Rw-r9U"/>
+                                </connections>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Median of votes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsH-3S-7sb">
                                 <rect key="frame" x="791" y="696" width="134" height="14"/>
@@ -148,9 +151,6 @@
                             <constraint firstItem="jZs-lO-518" firstAttribute="width" secondItem="OsH-3S-7sb" secondAttribute="width" id="qfY-xN-OgN"/>
                             <constraint firstAttribute="centerY" secondItem="rRl-Vr-sSj" secondAttribute="centerY" id="u9n-m3-XB2"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="qSN-er-ndb" appends="YES" id="PWg-eV-xeA"/>
-                        </connections>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
