@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, XYPieChartDataSource {
+class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegate {
     var talkId: String!
     lazy var vm: VoteManager = {
        return VoteManager(tId: self.talkId)
@@ -27,6 +27,8 @@ class ViewController: UIViewController, XYPieChartDataSource {
     @IBOutlet weak var neutralHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var hateWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var hateHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // Life cycle
     override func viewDidLoad() {
@@ -53,6 +55,10 @@ class ViewController: UIViewController, XYPieChartDataSource {
     }
     
     @IBAction func lambdaLogoLongPressed(sender: AnyObject) {
+        if (self.view.userInteractionEnabled == false) {
+            return; // already in progress
+        }
+        
         let apiDic = [
             "id":self.talkId!,
             "plus_votes":self.vm.likes().count,
@@ -61,7 +67,31 @@ class ViewController: UIViewController, XYPieChartDataSource {
         ]
         
         let api = VoteUploader()
-        api.submitVotes(apiDic)
+        self.activityIndicator.startAnimating()
+        self.view.userInteractionEnabled = false
+        api.submitVotes(apiDic, succeded: {
+            let a = UIAlertView()
+            a.title = "Succeded"
+            a.message = "Votes data has been properly submited"
+            a.delegate = self
+            a.addButtonWithTitle("OK")
+            a.show()
+        }, failed: { (error) in
+            self.activityIndicator.stopAnimating()
+            self.view.userInteractionEnabled = true
+            
+            let a = UIAlertView()
+            a.title = "Failed"
+            if let e = error {
+                a.message = e.localizedDescription
+            }
+            a.addButtonWithTitle("OK")
+            a.show()
+        })
+    }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // Animation

@@ -13,7 +13,7 @@ let updateURL = "http://xmpp.lambdadays.org:4000/talk_api/update"
 
 class VoteUploader: NSObject
 {
-    func submitVotes(votes: NSDictionary)
+    func submitVotes(votes: NSDictionary, succeded: (() -> Void)?, failed: ((error: NSError?) -> Void)? = nil )
     {
         println("Votes: \(votes)")
         var request = NSMutableURLRequest(URL: NSURL(string: updateURL)!)
@@ -30,11 +30,22 @@ class VoteUploader: NSObject
         
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            let httpResp = response as NSHTTPURLResponse
             println("Response: \(response)")
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
             println("Body: \(strData)")
-            var err: NSError?
-            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err)
+//            var err: NSError?
+//            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err)
+            if (httpResp.statusCode == 200) {
+                if let s = succeded {
+                    s()
+                }
+            }
+            else {
+                if let f = failed {
+                    f(error: error)
+                }
+            }
         })
         
         task.resume()
