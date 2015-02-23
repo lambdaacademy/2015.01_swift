@@ -16,7 +16,7 @@ class VoterTests: XCTestCase {
     }
     
     func testVoteManagerAccumulatesVotes() {
-        let vm = VoteManager()
+        let vm = VoteManager(tId: "1")
         
         var votes: [Vote] = []
         XCTAssert(equal(votes, vm.votes, { $0.isKindOf($1)} ), "Casted and recieved vote arrays are not equal")
@@ -30,7 +30,7 @@ class VoterTests: XCTestCase {
     }
     
     func testVoteManagerMedian() {
-        var vm = VoteManager()
+        var vm = VoteManager(tId: "1")
         XCTAssert(vm.median.isNone, "An empty Vote manager should return None as median")
         
         vm.makeVote(Vote.Like(NSDate(), ""))
@@ -38,7 +38,7 @@ class VoterTests: XCTestCase {
         vm.makeVote(Vote.Like(NSDate(), ""))
         XCTAssert(vm.median.isLike, "It should be Like here")
         
-        vm = VoteManager()
+        vm = VoteManager(tId: "1")
         vm.makeVote(Vote.Like(NSDate(), ""))
         vm.makeVote(Vote.Hate(NSDate(), ""))
         vm.makeVote(Vote.Like(NSDate(), ""))
@@ -46,7 +46,7 @@ class VoterTests: XCTestCase {
         vm.makeVote(Vote.Hate(NSDate(), ""))
         XCTAssert(vm.median.isHate, "It should be Hate here")
         
-        vm = VoteManager()
+        vm = VoteManager(tId: "1")
         vm.makeVote(Vote.Like(NSDate(), ""))
         vm.makeVote(Vote.Like(NSDate(), ""))
         vm.makeVote(Vote.Like(NSDate(), ""))

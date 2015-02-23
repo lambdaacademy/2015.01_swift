@@ -11,14 +11,11 @@ import UIKit
 
 class VoteManager: NSObject {
     var votes : Array<Vote> = [] //
+    let talkId: String
     
-    // https://github.com/hpique/SwiftSingleton
-    class var sharedInstance: VoteManager {
-        struct Singleton {
-            static let instance = VoteManager()
-        }
-
-        return Singleton.instance
+    init(tId: String) {
+        talkId = tId
+        super.init()
     }
     
     func makeVote(vote: Vote) {

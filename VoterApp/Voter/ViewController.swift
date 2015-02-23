@@ -9,9 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController, XYPieChartDataSource {
+    var talkId: String!
     lazy var vm: VoteManager = {
-       return VoteManager.sharedInstance
+       return VoteManager(tId: self.talkId)
     }()
+    
     @IBOutlet weak var pieChart: XYPieChart!
     @IBOutlet weak var loveButton: UIButton!
     @IBOutlet weak var neutralButton: UIButton!
@@ -33,21 +35,33 @@ class ViewController: UIViewController, XYPieChartDataSource {
     
     // Actions
     @IBAction func smileButtonPressed(sender: UIButton) {
-        self.vm.makeVote(Vote.Like(NSDate(), "ABC"))
+        self.vm.makeVote(Vote.Like(NSDate(), self.talkId))
         self.animateButton(sender)
         self.pieChart.reloadData();
     }
     
     @IBAction func donnoPressed(sender: UIButton) {
-        self.vm.makeVote(Vote.Neutral(NSDate(), "ABC"))
+        self.vm.makeVote(Vote.Neutral(NSDate(), self.talkId))
         self.animateButton(sender)
         self.pieChart.reloadData();
     }
     
     @IBAction func cryingPressed(sender: UIButton) {
-        self.vm.makeVote(Vote.Hate(NSDate(), "ABC"))
+        self.vm.makeVote(Vote.Hate(NSDate(), self.talkId))
         self.animateButton(sender)
         self.pieChart.reloadData();
+    }
+    
+    @IBAction func lambdaLogoLongPressed(sender: AnyObject) {
+        let apiDic = [
+            "id":self.talkId!,
+            "plus_votes":self.vm.likes().count,
+            "zero_votes":self.vm.neutrals().count,
+            "minus_votes":self.vm.hates().count
+        ]
+        
+        let api = VoteUploader()
+        api.submitVotes(apiDic)
     }
     
     // Animation
