@@ -95,7 +95,7 @@
                                     <action selector="cryingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iRK-A7-mCB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lecture name..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ry7-u9-Th1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;Talk Title&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ry7-u9-Th1">
                                 <rect key="frame" x="171" y="111" width="682" height="71"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -132,6 +132,9 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jAh-ih-Vcu">
+                                <rect key="frame" x="502" y="217" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -158,6 +161,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="jAh-ih-Vcu" id="8q4-KI-Msd"/>
                         <outlet property="hateButton" destination="YYv-e3-2oM" id="a0c-A9-CJg"/>
                         <outlet property="hateHeightConstraint" destination="rWo-NK-0vu" id="N2I-Gq-eme"/>
                         <outlet property="hateWidthConstraint" destination="KGC-6U-Xgm" id="sLg-Qs-xTS"/>
@@ -170,6 +174,7 @@
                         <outlet property="neutralHeightConstraint" destination="V8z-LI-aTR" id="XJv-ym-Dof"/>
                         <outlet property="neutralWidthConstraint" destination="rXi-zy-Jmz" id="kRV-nv-FT0"/>
                         <outlet property="pieChart" destination="NdX-nz-q6P" id="dAg-hC-Ctq"/>
+                        <outlet property="talkTitleLabel" destination="ry7-u9-Th1" id="xsl-Di-dZ4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -9,7 +9,7 @@
 import Foundation
 
 let updateURL = "http://xmpp.lambdadays.org:4000/talk_api/update"
-
+let talksURL = "http://xmpp.lambdadays.org:4000/talk_api/index"
 
 class VoteUploader: NSObject
 {
@@ -39,6 +39,37 @@ class VoteUploader: NSObject
             if (httpResp.statusCode == 200) {
                 if let s = succeded {
                     s()
+                }
+            }
+            else {
+                if let f = failed {
+                    f(error: error)
+                }
+            }
+        })
+        
+        task.resume()
+    }
+    
+    func getTalks(succeded: ((NSArray) -> Void)?, failed: ((error: NSError?) -> Void)? = nil )
+    {
+        var request = NSMutableURLRequest(URL: NSURL(string: talksURL)!)
+        request.HTTPMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        println("Request: \(request)")
+        
+        var err: NSError?
+        var session = NSURLSession.sharedSession()
+        var task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            let httpResp = response as NSHTTPURLResponse
+            println("Response: \(response)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("Body: \(strData)")
+            var err: NSError?
+            var json: NSDictionary! = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
+            if (httpResp.statusCode == 200 && json != nil) {
+                if let s = succeded {
+                    s(json["talks"] as NSArray!)
                 }
             }
             else {

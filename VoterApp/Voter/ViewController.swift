@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegate {
     var talkId: String!
+    var talkName: String!
     lazy var vm: VoteManager = {
        return VoteManager(tId: self.talkId)
     }()
@@ -20,6 +21,7 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
     @IBOutlet weak var hateButton: UIButton!
     @IBOutlet weak var medianImage: UIImageView!
     @IBOutlet weak var medianLabel: UILabel!
+    @IBOutlet weak var talkTitleLabel: UILabel!
     
     @IBOutlet weak var likeWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var likeHeightConstraint: NSLayoutConstraint!
@@ -32,6 +34,7 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
     
     // Life cycle
     override func viewDidLoad() {
+        self.talkTitleLabel.text = self.talkName
         self.pieChart.reloadData()
     }
     
@@ -69,6 +72,7 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
         let api = VoteUploader()
         self.activityIndicator.startAnimating()
         self.view.userInteractionEnabled = false
+        self.talkTitleLabel.text = "\(self.talkName) - submiting votes..."
         api.submitVotes(apiDic, succeded: {
             let a = UIAlertView()
             a.title = "Succeded"
@@ -76,6 +80,7 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
             a.delegate = self
             a.addButtonWithTitle("OK")
             a.show()
+            self.talkTitleLabel.text = self.talkName
         }, failed: { (error) in
             self.activityIndicator.stopAnimating()
             self.view.userInteractionEnabled = true
@@ -87,6 +92,7 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
             }
             a.addButtonWithTitle("OK")
             a.show()
+            self.talkTitleLabel.text = self.talkName            
         })
     }
     
