@@ -72,39 +72,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRl-Vr-sSj">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="256" placeholderIntrinsicHeight="256" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRl-Vr-sSj">
                                 <rect key="frame" x="99" y="320" width="134" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="134" id="Waf-Oj-J9E"/>
-                                    <constraint firstAttribute="height" constant="128" id="hVf-3P-ek2"/>
+                                    <constraint firstAttribute="width" constant="256" id="Waf-Oj-J9E"/>
+                                    <constraint firstAttribute="height" constant="256" id="hVf-3P-ek2"/>
                                 </constraints>
-                                <state key="normal" title=" " backgroundImage="love.png">
+                                <state key="normal" title=" " image="love.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="smileButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OT6-Qe-1yV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vdt-1s-Kip">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="256" placeholderIntrinsicHeight="256" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vdt-1s-Kip">
                                 <rect key="frame" x="445" y="320" width="134" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="V8z-LI-aTR"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="134" id="rXi-zy-Jmz"/>
+                                    <constraint firstAttribute="height" constant="256" id="V8z-LI-aTR"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="256" id="rXi-zy-Jmz"/>
                                 </constraints>
-                                <state key="normal" title=" " backgroundImage="donno.png">
+                                <state key="normal" title=" " image="donno.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="donnoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tce-SN-HFA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YYv-e3-2oM">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="256" placeholderIntrinsicHeight="256" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YYv-e3-2oM">
                                 <rect key="frame" x="791" y="320" width="134" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="134" id="KGC-6U-Xgm"/>
-                                    <constraint firstAttribute="height" constant="128" id="rWo-NK-0vu"/>
+                                    <constraint firstAttribute="width" constant="256" id="KGC-6U-Xgm"/>
+                                    <constraint firstAttribute="height" constant="256" id="rWo-NK-0vu"/>
                                 </constraints>
-                                <state key="normal" title=" " backgroundImage="crying.png">
+                                <state key="normal" title=" " image="crying.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
