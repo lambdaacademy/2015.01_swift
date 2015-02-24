@@ -49,7 +49,7 @@ class VoteManager: NSObject {
         var grouppedVotes  = [self.likes(), self.hates(), self.neutrals()]
         grouppedVotes.sort({ $0.count < $1.count })
 
-        if let median = grouppedVotes[1].last {
+        if let median = grouppedVotes[0].last {
             return median
         } else {
             return Vote.None(NSDate(), "")

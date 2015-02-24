@@ -20,23 +20,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="l5O-vB-BNo">
-                                <rect key="frame" x="16" y="0.0" width="568" height="600"/>
+                                <rect key="frame" x="16" y="106" width="568" height="494"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="UdG-e4-EzM" id="PaM-Ii-OzS"/>
                                     <outlet property="delegate" destination="UdG-e4-EzM" id="kqU-bE-CIP"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select Talk to start voting:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wew-pJ-TEo">
+                                <rect key="frame" x="16" y="40" width="568" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SqJ-B8-BeY">
+                                <rect key="frame" x="290" y="78" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UwA-c9-iEi" firstAttribute="top" secondItem="l5O-vB-BNo" secondAttribute="bottom" id="15I-1l-ECg"/>
-                            <constraint firstItem="l5O-vB-BNo" firstAttribute="top" secondItem="Yaa-Ki-0lp" secondAttribute="topMargin" id="5RB-kj-FR0"/>
+                            <constraint firstItem="wew-pJ-TEo" firstAttribute="top" secondItem="Q7d-Bx-5Vv" secondAttribute="bottom" constant="20" id="FBI-5q-1qg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wew-pJ-TEo" secondAttribute="trailing" id="Fu6-da-P0G"/>
+                            <constraint firstItem="wew-pJ-TEo" firstAttribute="leading" secondItem="Yaa-Ki-0lp" secondAttribute="leadingMargin" id="Lwj-bU-Q2Q"/>
+                            <constraint firstItem="l5O-vB-BNo" firstAttribute="top" secondItem="SqJ-B8-BeY" secondAttribute="bottom" constant="8" id="Skf-i9-7O2"/>
+                            <constraint firstItem="l5O-vB-BNo" firstAttribute="top" secondItem="wew-pJ-TEo" secondAttribute="bottom" constant="46" id="SwG-xK-BHB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="l5O-vB-BNo" secondAttribute="trailing" id="UXm-e1-3HB"/>
+                            <constraint firstAttribute="centerX" secondItem="l5O-vB-BNo" secondAttribute="centerX" id="fX8-8z-H8e"/>
+                            <constraint firstItem="SqJ-B8-BeY" firstAttribute="centerX" secondItem="wew-pJ-TEo" secondAttribute="centerX" id="hvl-uY-fGa"/>
                             <constraint firstItem="l5O-vB-BNo" firstAttribute="leading" secondItem="Yaa-Ki-0lp" secondAttribute="leadingMargin" id="nyi-KV-fzc"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="SqJ-B8-BeY" id="dlU-Am-cc2"/>
                         <outlet property="tableView" destination="l5O-vB-BNo" id="qXP-Tz-yZy"/>
                     </connections>
                 </viewController>
@@ -97,26 +113,26 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;Talk Title&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ry7-u9-Th1">
                                 <rect key="frame" x="171" y="111" width="682" height="71"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NdX-nz-q6P" customClass="XYPieChart">
-                                <rect key="frame" x="310" y="504" width="405" height="240"/>
+                                <rect key="frame" x="413" y="594" width="200" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="N8q-qF-TX8"/>
-                                    <constraint firstAttribute="width" constant="405" id="i9Q-tf-vJ7"/>
+                                    <constraint firstAttribute="height" constant="150" id="N8q-qF-TX8"/>
+                                    <constraint firstAttribute="width" constant="200" id="i9Q-tf-vJ7"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="wvo-Wv-kTB"/>
                                 </connections>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jZs-lO-518">
-                                <rect key="frame" x="791" y="560" width="134" height="128"/>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jZs-lO-518">
+                                <rect key="frame" x="689" y="650" width="339" height="38"/>
                             </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lambda_academy_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="VZg-EI-d24">
-                                <rect key="frame" x="46" y="560" width="240" height="128"/>
+                                <rect key="frame" x="46" y="605" width="240" height="128"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="8Ym-gf-4rw"/>
@@ -126,8 +142,8 @@
                                     <outletCollection property="gestureRecognizers" destination="qSN-er-ndb" appends="YES" id="9mp-Rw-r9U"/>
                                 </connections>
                             </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Median of votes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsH-3S-7sb">
-                                <rect key="frame" x="791" y="696" width="134" height="14"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Median of votes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsH-3S-7sb">
+                                <rect key="frame" x="689" y="696" width="339" height="14"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>

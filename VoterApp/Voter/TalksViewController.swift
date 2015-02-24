@@ -12,18 +12,23 @@ class TalksViewController: UIViewController, UITableViewDataSource, UITableViewD
     var talks: NSArray?
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let vu = VoteUploader()
+        self.activityIndicator.startAnimating()
         vu.getTalks({ (talks: NSArray) -> Void in
             self.talks = talks
             NSOperationQueue.mainQueue().addOperationWithBlock({
                 self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
             })
         }, failed: { (error) -> Void in
-            println(error)
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+                self.activityIndicator.stopAnimating()
+            })
         })
         // Do any additional setup after loading the view.
     }
