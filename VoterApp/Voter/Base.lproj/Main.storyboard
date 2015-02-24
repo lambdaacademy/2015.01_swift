@@ -194,7 +194,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="qSN-er-ndb">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="3" id="qSN-er-ndb">
                     <connections>
                         <action selector="lambdaLogoLongPressed:" destination="BYZ-38-t0r" id="PPU-09-g7q"/>
                     </connections>
