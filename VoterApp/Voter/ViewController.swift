@@ -36,6 +36,9 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
     override func viewDidLoad() {
         self.talkTitleLabel.text = self.talkName
         self.pieChart.reloadData()
+        self.loveButton.contentMode = UIViewContentMode.Center
+        self.neutralButton.contentMode = UIViewContentMode.Center
+        self.hateButton.contentMode = UIViewContentMode.Center
     }
     
     // Actions
@@ -132,16 +135,16 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
         
         
         UIView.animateWithDuration(0.2, animations: {
-            width.constant*=2;
-            height.constant*=2;
-//            btn.transform = CGAffineTransformMakeScale(2, 2)  // simpler way, without constraits
-            btn.layoutIfNeeded()
+//            width.constant*=2;
+//            height.constant*=2;
+            btn.transform = CGAffineTransformMakeScale(2, 2)  // simpler way, without constraits
+//            btn.layoutIfNeeded()
         }, completion: { _ in
             
             UIView.animateWithDuration(0.5, animations: {
-//                btn.transform = CGAffineTransformIdentity // simpler way, without constraits
-                width.constant/=2;
-                height.constant/=2;
+                btn.transform = CGAffineTransformIdentity // simpler way, without constraits
+//                width.constant/=2;
+//                height.constant/=2;
                 btn.layoutIfNeeded()
             })
         })
