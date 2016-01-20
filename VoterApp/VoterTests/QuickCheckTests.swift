@@ -12,11 +12,11 @@ import XCTest
 
 // Check calls check withing assertion clausure
 func Check<X: Arbitrary>(prop: X -> Bool, desc: String) {
-    XCTAssert(check(desc, prop), desc)
+    XCTAssert(check(desc, prop: prop), desc)
 }
 
 func Check<X: Arbitrary, Y: Arbitrary>(prop: (X, Y) -> Bool, desc: String) {
-    XCTAssert(check(desc, prop), desc)
+    XCTAssert(check(desc, prop: prop), desc)
 }
 
 class QuickCheckTests: XCTestCase {

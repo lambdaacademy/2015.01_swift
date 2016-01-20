@@ -19,12 +19,12 @@ protocol Smaller {
 }
 
 protocol Arbitrary: Smaller {
-    class func arbitrary() -> Self
+    static func arbitrary() -> Self
 }
 
 func check<X: Arbitrary>(message: String, prop: X -> Bool) -> (Bool) {
     let instance = ArbitraryI(arbitrary: { X.arbitrary() }, smaller: { $0.smaller() })
-    return checkHelper(instance, prop, message)
+    return checkHelper(instance, prop: prop, message: message)
 }
 
 func check<X: Arbitrary, Y: Arbitrary>(message: String, prop: (X, Y) -> Bool) -> (Bool) {
@@ -39,7 +39,7 @@ func check<X: Arbitrary, Y: Arbitrary>(message: String, prop: (X, Y) -> Bool) ->
     }
     
     let instance = ArbitraryI(arbitrary: arbitraryTuple, smaller: smaller)
-    return checkHelper(instance, prop, message)
+    return checkHelper(instance, prop: prop, message: message)
 }
 
 
@@ -55,23 +55,23 @@ func checkHelper<A>(arbitraryInstance: ArbitraryI<A>, prop: A -> Bool, message: 
     for _ in 0..<numberOfIterations {
         let value = arbitraryInstance.arbitrary()
         if !prop(value) {
-            let smallerValue = iterateWhile({ !prop($0) }, value,
-                arbitraryInstance.smaller)
+            let smallerValue = iterateWhile({ !prop($0) }, initialValue: value,
+                next: arbitraryInstance.smaller)
             
             // TODO: how to get this explicit type (Vote) out? 
             if let a = smallerValue as? Array<Vote> {
-                print("\"\(message)\" doesn't hold: [")
+                print("\"\(message)\" doesn't hold: [", terminator: "")
                 for v in a {
-                    print(" \(v.description),")
+                    print(" \(v.description),", terminator: "")
                 }
-                println("]")
+                print("]")
             }
             else {
-                println("\"\(message)\" doesn't hold: \(smallerValue)")
+                print("\"\(message)\" doesn't hold: \(smallerValue)")
             }
             return false
         }
     }
-    println("\"\(message)\" passed \(numberOfIterations) tests.")
+    print("\"\(message)\" passed \(numberOfIterations) tests.")
     return true
 }

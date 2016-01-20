@@ -15,25 +15,30 @@ class VoteUploader: NSObject
 {
     func submitVotes(votes: NSDictionary, succeded: (() -> Void)?, failed: ((error: NSError?) -> Void)? = nil )
     {
-        println("Votes: \(votes)")
-        var request = NSMutableURLRequest(URL: NSURL(string: updateURL)!)
+        print("Votes: \(votes)")
+        let request = NSMutableURLRequest(URL: NSURL(string: updateURL)!)
         request.HTTPMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        println("Request: \(request)")
+        print("Request: \(request)")
         
-        var err: NSError?
-        let bodyData = NSJSONSerialization.dataWithJSONObject(votes, options: NSJSONWritingOptions(0), error: &err)
-        println("string: \(NSString(data: bodyData!, encoding: NSUTF8StringEncoding))")
+        let bodyData: NSData?
+        do {
+            bodyData = try NSJSONSerialization.dataWithJSONObject(votes, options: NSJSONWritingOptions(rawValue: 0))
+        } catch let error as NSError {
+            // TODO failed
+            bodyData = nil
+        }
+        print("string: \(NSString(data: bodyData!, encoding: NSUTF8StringEncoding))")
         request.HTTPBody = bodyData
-        println("bodyData: \(bodyData)")
-        println("headers: \(request.allHTTPHeaderFields)")
+        print("bodyData: \(bodyData)")
+        print("headers: \(request.allHTTPHeaderFields)")
         
-        var session = NSURLSession.sharedSession()
-        var task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-            let httpResp = response as NSHTTPURLResponse
-            println("Response: \(response)")
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("Body: \(strData)")
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            let httpResp = response as! NSHTTPURLResponse
+            print("Response: \(response)")
+            let strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            print("Body: \(strData)")
 //            var err: NSError?
 //            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err)
             if (httpResp.statusCode == 200) {
@@ -53,28 +58,38 @@ class VoteUploader: NSObject
     
     func getTalks(succeded: ((NSArray) -> Void)?, failed: ((error: NSError?) -> Void)? = nil )
     {
-        var request = NSMutableURLRequest(URL: NSURL(string: talksURL)!)
+        let request = NSMutableURLRequest(URL: NSURL(string: talksURL)!)
         request.HTTPMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        println("Request: \(request)")
+        print("Request: \(request)")
         
-        var err: NSError?
-        var session = NSURLSession.sharedSession()
-        var task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-            let httpResp = response as NSHTTPURLResponse
-            println("Response: \(response)")
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("Body: \(strData)")
-            var err: NSError?
-            var json: NSDictionary! = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
-            if (httpResp.statusCode == 200 && json != nil) {
-                if let s = succeded {
-                    s(json["talks"] as NSArray!)
+
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            print("Response: \(response)")
+            print("Error: \(error)")
+            
+            if let httpResp = response as? NSHTTPURLResponse {
+                let strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print("Body: \(strData)")
+
+                do {
+                    let json: NSDictionary! = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as! NSDictionary
+                    if (httpResp.statusCode == 200 && json != nil) {
+                        if let s = succeded {
+                            s(json["talks"] as! NSArray!)
+                        }
+                    }
+                    else {
+                        if let f = failed {
+                            f(error: error)
+                        }
+                    }
                 }
-            }
-            else {
-                if let f = failed {
-                    f(error: error)
+                catch {
+                    if let f = failed {
+                        f(error: nil)
+                    }
                 }
             }
         })

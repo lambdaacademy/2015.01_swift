@@ -11,12 +11,12 @@ import Foundation
 func iterateWhile<A>(condition: A -> Bool, initialValue: A, next: A -> A?) -> A {
     if let x = next(initialValue) {
         if condition(x) {
-            return iterateWhile(condition, x, next)
+            return iterateWhile(condition, initialValue: x, next: next)
         }
     }
     return initialValue
 }
 
-func random(#from: Int, #to: Int) -> Int {
+func random(from from: Int, to: Int) -> Int {
     return from + (Int(arc4random()) % (to-from))
 }

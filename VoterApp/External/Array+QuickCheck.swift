@@ -16,11 +16,11 @@ func arbitraryArray<X: Arbitrary>() -> [X] {
 
 func check<X: Arbitrary>(message: String, prop: [X] -> Bool) -> (Bool) {
     let instance = ArbitraryI(arbitrary: arbitraryArray, smaller: { (x: [X]) in x.smaller() })
-    return checkHelper(instance, prop, message)
+    return checkHelper(instance, prop: prop, message: message)
 }
 
 extension Array: Smaller {
-    func smaller() -> [T]? {
+    func smaller() -> [Element]? {
         // TODO
         return nil
     }

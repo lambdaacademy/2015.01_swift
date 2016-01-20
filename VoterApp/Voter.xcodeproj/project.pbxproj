@@ -256,6 +256,8 @@
 		AFCC56451A3E17AB00400DCA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Lambda Academy";
 				TargetAttributes = {

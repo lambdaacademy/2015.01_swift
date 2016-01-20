@@ -19,14 +19,14 @@ class VoterTests: XCTestCase {
         let vm = VoteManager(tId: "1")
         
         var votes: [Vote] = []
-        XCTAssert(equal(votes, vm.votes, { $0.isKindOf($1)} ), "Casted and recieved vote arrays are not equal")
+        XCTAssert(votes.elementsEqual(vm.votes, isEquivalent: { $0.isKindOf($1)} ), "Casted and recieved vote arrays are not equal")
         
         votes = [Vote.Like(NSDate(), ""), Vote.Like(NSDate(), ""), Vote.Hate(NSDate(), ""), Vote.Neutral(NSDate(), "")]
         for v in votes {
             vm.makeVote(v)
         }
-        println("votes: \(vm.votes)")
-        XCTAssert(equal(votes, vm.votes, { $0.isKindOf($1)} ), "Casted and recieved vote arrays are not equal")
+        print("votes: \(vm.votes)")
+        XCTAssert(votes.elementsEqual(vm.votes, isEquivalent: { $0.isKindOf($1)} ), "Casted and recieved vote arrays are not equal")
     }
     
     func testVoteManagerMedian() {

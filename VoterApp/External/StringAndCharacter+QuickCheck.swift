@@ -19,7 +19,7 @@ extension Character: Arbitrary {
 extension String: Smaller {
     func smaller() -> String? {
         return self.isEmpty ? nil
-            : dropFirst(self)
+            : String(self.characters.dropFirst())
     }
 }
 
@@ -29,6 +29,6 @@ extension String: Arbitrary {
         let randomCharacters = Array(0..<randomLength).map { _ in
             Character.arbitrary()
         }
-        return reduce(randomCharacters, "") { $0 + String($1) }
+        return randomCharacters.reduce("") { $0 + String($1) }
     }
 }
