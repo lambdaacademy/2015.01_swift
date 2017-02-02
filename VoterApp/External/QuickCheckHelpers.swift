@@ -8,7 +8,7 @@
 
 import Foundation
 
-func iterateWhile<A>(condition: A -> Bool, initialValue: A, next: A -> A?) -> A {
+func iterateWhile<A>(_ condition: (A) -> Bool, initialValue: A, next: (A) -> A?) -> A {
     if let x = next(initialValue) {
         if condition(x) {
             return iterateWhile(condition, initialValue: x, next: next)
@@ -17,6 +17,6 @@ func iterateWhile<A>(condition: A -> Bool, initialValue: A, next: A -> A?) -> A 
     return initialValue
 }
 
-func random(from from: Int, to: Int) -> Int {
+func random(from: Int, to: Int) -> Int {
     return from + (Int(arc4random()) % (to-from))
 }

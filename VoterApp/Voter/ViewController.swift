@@ -36,32 +36,32 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
     override func viewDidLoad() {
         self.talkTitleLabel.text = self.talkName
         self.pieChart.reloadData()
-        self.loveButton.contentMode = UIViewContentMode.Center
-        self.neutralButton.contentMode = UIViewContentMode.Center
-        self.hateButton.contentMode = UIViewContentMode.Center
+        self.loveButton.contentMode = UIViewContentMode.center
+        self.neutralButton.contentMode = UIViewContentMode.center
+        self.hateButton.contentMode = UIViewContentMode.center
     }
     
     // Actions
-    @IBAction func smileButtonPressed(sender: UIButton) {
-        self.vm.makeVote(Vote.Like(NSDate(), self.talkId))
+    @IBAction func smileButtonPressed(_ sender: UIButton) {
+        self.vm.makeVote(Vote.like(Date(), self.talkId))
         self.animateButton(sender)
         self.pieChart.reloadData();
     }
     
-    @IBAction func donnoPressed(sender: UIButton) {
-        self.vm.makeVote(Vote.Neutral(NSDate(), self.talkId))
+    @IBAction func donnoPressed(_ sender: UIButton) {
+        self.vm.makeVote(Vote.neutral(Date(), self.talkId))
         self.animateButton(sender)
         self.pieChart.reloadData();
     }
     
-    @IBAction func cryingPressed(sender: UIButton) {
-        self.vm.makeVote(Vote.Hate(NSDate(), self.talkId))
+    @IBAction func cryingPressed(_ sender: UIButton) {
+        self.vm.makeVote(Vote.hate(Date(), self.talkId))
         self.animateButton(sender)
         self.pieChart.reloadData();
     }
     
-    @IBAction func lambdaLogoLongPressed(sender: AnyObject) {
-        if (self.view.userInteractionEnabled == false) {
+    @IBAction func lambdaLogoLongPressed(_ sender: AnyObject) {
+        if (self.view.isUserInteractionEnabled == false) {
             return; // already in progress
         }
         
@@ -70,42 +70,42 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
             "plus_votes":self.vm.likes().count,
             "zero_votes":self.vm.neutrals().count,
             "minus_votes":self.vm.hates().count
-        ]
+        ] as [String : Any]
         
         let api = VoteUploader()
         self.activityIndicator.startAnimating()
-        self.view.userInteractionEnabled = false
+        self.view.isUserInteractionEnabled = false
         self.talkTitleLabel.text = "\(self.talkName) - submiting votes..."
         api.submitVotes(apiDic, succeded: {
             let a = UIAlertView()
             a.title = "Succeded"
             a.message = "Votes data has been properly submited"
             a.delegate = self
-            a.addButtonWithTitle("OK")
+            a.addButton(withTitle: "OK")
             a.show()
             self.talkTitleLabel.text = self.talkName
         }, failed: { (error) in
             self.activityIndicator.stopAnimating()
-            self.view.userInteractionEnabled = true
+            self.view.isUserInteractionEnabled = true
             
             let a = UIAlertView()
             a.title = "Failed"
             if let e = error {
                 a.message = e.localizedDescription
             }
-            a.addButtonWithTitle("OK")
+            a.addButton(withTitle: "OK")
             a.show()
             self.talkTitleLabel.text = self.talkName            
         })
     }
     
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
+        self.presentingViewController!.dismiss(animated: true, completion: nil)
     }
     
     // Animation
     
-    func animateButton(btn : UIButton) {
+    func animateButton(_ btn : UIButton) {
         var width: NSLayoutConstraint! = {
             switch (btn) {
             case self.loveButton :
@@ -134,15 +134,15 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
         
         
         
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
 //            width.constant*=2;
 //            height.constant*=2;
-            btn.transform = CGAffineTransformMakeScale(2, 2)  // simpler way, without constraits
+            btn.transform = CGAffineTransform(scaleX: 2, y: 2)  // simpler way, without constraits
 //            btn.layoutIfNeeded()
         }, completion: { _ in
             
-            UIView.animateWithDuration(0.5, animations: {
-                btn.transform = CGAffineTransformIdentity // simpler way, without constraits
+            UIView.animate(withDuration: 0.5, animations: {
+                btn.transform = CGAffineTransform.identity // simpler way, without constraits
 //                width.constant/=2;
 //                height.constant/=2;
                 btn.layoutIfNeeded()
@@ -150,27 +150,27 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
         })
         
         switch(self.vm.median) {
-        case Vote.Like :
+        case Vote.like :
             medianImage.image = UIImage(named: "love.png")
-            medianLabel.hidden = false
-        case Vote.Neutral :
+            medianLabel.isHidden = false
+        case Vote.neutral :
             medianImage.image = UIImage(named: "donno.png")
-            medianLabel.hidden = false
-        case Vote.Hate :
+            medianLabel.isHidden = false
+        case Vote.hate :
             medianImage.image = UIImage(named: "crying.png")
-            medianLabel.hidden = false
+            medianLabel.isHidden = false
         default :
             medianImage.image = nil
-            medianLabel.hidden = true
+            medianLabel.isHidden = true
         }
     }
     
     // Pie Chart
-    func numberOfSlicesInPieChart(pieChart: XYPieChart!) -> UInt {
+    func numberOfSlices(in pieChart: XYPieChart!) -> UInt {
         return 3
     }
     
-    func pieChart(pieChart: XYPieChart!, valueForSliceAtIndex index: UInt) -> CGFloat {
+    func pieChart(_ pieChart: XYPieChart!, valueForSliceAt index: UInt) -> CGFloat {
         switch (index) {
         case 0:
             return CGFloat(self.vm.likes().count)
@@ -183,14 +183,14 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
         }
     }
     
-    func pieChart(pieChart: XYPieChart!, colorForSliceAtIndex index: UInt) -> UIColor! {
+    func pieChart(_ pieChart: XYPieChart!, colorForSliceAt index: UInt) -> UIColor! {
         switch (index) {
         case 0:
-            return UIColor.greenColor().colorWithAlphaComponent(0.6)
+            return UIColor.green.withAlphaComponent(0.6)
         case 1:
-            return UIColor.blueColor().colorWithAlphaComponent(0.6)
+            return UIColor.blue.withAlphaComponent(0.6)
         case 2:
-            return UIColor.redColor().colorWithAlphaComponent(0.6)
+            return UIColor.red.withAlphaComponent(0.6)
         default:
             return nil
         }

@@ -18,7 +18,7 @@ class VoteManager: NSObject {
         super.init()
     }
     
-    func makeVote(vote: Vote) {
+    func makeVote(_ vote: Vote) {
         self.votes.append(vote)
         
 //        println("Votes: \(self.votes)")
@@ -47,12 +47,12 @@ class VoteManager: NSObject {
     
     var median: Vote {
         var grouppedVotes  = [self.likes(), self.hates(), self.neutrals()]
-        grouppedVotes.sortInPlace({ $0.count < $1.count })
+        grouppedVotes.sort(by: { $0.count < $1.count })
 
         if let median = grouppedVotes[0].last {
             return median
         } else {
-            return Vote.None(NSDate(), "")
+            return Vote.none(Date(), "")
         }
     }
 }

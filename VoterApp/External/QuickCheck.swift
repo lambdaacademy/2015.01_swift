@@ -22,12 +22,12 @@ protocol Arbitrary: Smaller {
     static func arbitrary() -> Self
 }
 
-func check<X: Arbitrary>(message: String, prop: X -> Bool) -> (Bool) {
+func check<X: Arbitrary>(_ message: String, prop: @escaping (X) -> Bool) -> (Bool) {
     let instance = ArbitraryI(arbitrary: { X.arbitrary() }, smaller: { $0.smaller() })
     return checkHelper(instance, prop: prop, message: message)
 }
 
-func check<X: Arbitrary, Y: Arbitrary>(message: String, prop: (X, Y) -> Bool) -> (Bool) {
+func check<X: Arbitrary, Y: Arbitrary>(_ message: String, prop: @escaping (X, Y) -> Bool) -> (Bool) {
     let arbitraryTuple = { (X.arbitrary(), Y.arbitrary()) }
     let smaller: (X, Y) -> (X, Y)? = { (x, y) in
         if let newX = x.smaller() {
@@ -48,10 +48,10 @@ func check<X: Arbitrary, Y: Arbitrary>(message: String, prop: (X, Y) -> Bool) ->
 //
 struct ArbitraryI<T> {
     let arbitrary: () -> T
-    let smaller: T -> T?
+    let smaller: (T) -> T?
 }
 
-func checkHelper<A>(arbitraryInstance: ArbitraryI<A>, prop: A -> Bool, message: String) -> (Bool) {
+func checkHelper<A>(_ arbitraryInstance: ArbitraryI<A>, prop: @escaping (A) -> Bool, message: String) -> (Bool) {
     for _ in 0..<numberOfIterations {
         let value = arbitraryInstance.arbitrary()
         if !prop(value) {

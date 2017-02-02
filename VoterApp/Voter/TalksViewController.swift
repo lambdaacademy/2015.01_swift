@@ -21,12 +21,12 @@ class TalksViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.activityIndicator.startAnimating()
         vu.getTalks({ (talks: NSArray) -> Void in
             self.talks = talks
-            NSOperationQueue.mainQueue().addOperationWithBlock({
+            OperationQueue.main.addOperation({
                 self.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
             })
         }, failed: { (error) -> Void in
-            NSOperationQueue.mainQueue().addOperationWithBlock({
+            OperationQueue.main.addOperation({
                 self.activityIndicator.stopAnimating()
             })
         })
@@ -35,7 +35,7 @@ class TalksViewController: UIViewController, UITableViewDataSource, UITableViewD
    
     // MARK: UITableView
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let t = talks {
             return t.count
         }
@@ -43,24 +43,24 @@ class TalksViewController: UIViewController, UITableViewDataSource, UITableViewD
         return 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         if let tss = talks {
             cell.textLabel?.text = tss[indexPath.row]["title"] as! String?
         }
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let tss = talks {
-            let vc: ViewController = self.storyboard?.instantiateViewControllerWithIdentifier("Voting") as! ViewController
+            let vc: ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Voting") as! ViewController
             let talkId = tss[indexPath.row]["id"] as! Int
             vc.talkId = "\(talkId)"
             vc.talkName = tss[indexPath.row]["title"] as! String?
-            self.presentViewController(vc, animated: true, completion: nil)
+            self.present(vc, animated: true, completion: nil)
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

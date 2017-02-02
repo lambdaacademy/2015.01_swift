@@ -10,33 +10,33 @@ import Foundation
 
 // value type
 enum Vote {
-    case Like(NSDate, String)
-    case Neutral(NSDate, String)
-    case Hate(NSDate, String)
-    case None(NSDate, String)
+    case like(Date, String)
+    case neutral(Date, String)
+    case hate(Date, String)
+    case none(Date, String)
     
     var description : String {
         switch(self) {
-        case .Like(_, _) :
+        case .like(_, _) :
             return "Like Vote"
-        case .Neutral(_, _) :
+        case .neutral(_, _) :
             return "Neutral Vote"
-        case .Hate(_, _) :
+        case .hate(_, _) :
             return "Hate Vote"
         default :
             return "No Vote"
         }
     }
     
-    func isKindOf(tryMe:Vote) -> Bool {
+    func isKindOf(_ tryMe:Vote) -> Bool {
         switch ((self, tryMe)) {
-        case (.Like(_,_), .Like(_,_)) :
+        case (.like(_,_), .like(_,_)) :
             return true
-        case (.Neutral(_,_), .Neutral(_,_)) :
+        case (.neutral(_,_), .neutral(_,_)) :
             return true
-        case (.Hate(_,_), .Hate(_,_)) :
+        case (.hate(_,_), .hate(_,_)) :
             return true
-        case (.None(_,_), .None(_,_)) :
+        case (.none(_,_), .none(_,_)) :
             return true
         default :
             return false
@@ -45,7 +45,7 @@ enum Vote {
     
     var isLike : Bool {
         switch(self) {
-        case .Like(_,_) :
+        case .like(_,_) :
             return true
         default :
             return false
@@ -54,7 +54,7 @@ enum Vote {
     
     var isNeutral : Bool {
         switch(self) {
-        case .Neutral(_, _) :
+        case .neutral(_, _) :
             return true
         default :
             return false
@@ -63,7 +63,7 @@ enum Vote {
     
     var isHate : Bool {
         switch(self) {
-        case .Hate(_, _) :
+        case .hate(_, _) :
             return true
         default :
             return false
@@ -72,7 +72,7 @@ enum Vote {
     
     var isNone : Bool {
         switch(self) {
-        case .None(_,_) :
+        case .none(_,_) :
             return true
         default :
             return false

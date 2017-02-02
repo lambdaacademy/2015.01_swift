@@ -13,31 +13,31 @@ let talksURL = "http://xmpp.lambdadays.org/talk_api/index"
 
 class VoteUploader: NSObject
 {
-    func submitVotes(votes: NSDictionary, succeded: (() -> Void)?, failed: ((error: NSError?) -> Void)? = nil )
+    func submitVotes(_ votes: NSDictionary, succeded: (() -> Void)?, failed: ((_ error: NSError?) -> Void)? = nil )
     {
         print("Votes: \(votes)")
-        let request = NSMutableURLRequest(URL: NSURL(string: updateURL)!)
-        request.HTTPMethod = "POST"
+        let request = NSMutableURLRequest(url: URL(string: updateURL)!)
+        request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         print("Request: \(request)")
         
-        let bodyData: NSData?
+        let bodyData: Data?
         do {
-            bodyData = try NSJSONSerialization.dataWithJSONObject(votes, options: NSJSONWritingOptions(rawValue: 0))
+            bodyData = try JSONSerialization.data(withJSONObject: votes, options: JSONSerialization.WritingOptions(rawValue: 0))
         } catch let error as NSError {
             // TODO failed
             bodyData = nil
         }
-        print("string: \(NSString(data: bodyData!, encoding: NSUTF8StringEncoding))")
-        request.HTTPBody = bodyData
+        print("string: \(NSString(data: bodyData!, encoding: String.Encoding.utf8.rawValue))")
+        request.httpBody = bodyData
         print("bodyData: \(bodyData)")
         print("headers: \(request.allHTTPHeaderFields)")
         
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-            let httpResp = response as! NSHTTPURLResponse
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+            let httpResp = response as! HTTPURLResponse
             print("Response: \(response)")
-            let strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            let strData = NSString(data: data!, encoding: String.Encoding.utf8)
             print("Body: \(strData)")
 //            var err: NSError?
 //            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err)
@@ -56,25 +56,25 @@ class VoteUploader: NSObject
         task.resume()
     }
     
-    func getTalks(succeded: ((NSArray) -> Void)?, failed: ((error: NSError?) -> Void)? = nil )
+    func getTalks(_ succeded: ((NSArray) -> Void)?, failed: ((_ error: NSError?) -> Void)? = nil )
     {
-        let request = NSMutableURLRequest(URL: NSURL(string: talksURL)!)
-        request.HTTPMethod = "GET"
+        let request = NSMutableURLRequest(url: URL(string: talksURL)!)
+        request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         print("Request: \(request)")
         
 
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             print("Response: \(response)")
             print("Error: \(error)")
             
-            if let httpResp = response as? NSHTTPURLResponse {
-                let strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            if let httpResp = response as? HTTPURLResponse {
+                let strData = NSString(data: data!, encoding: String.Encoding.utf8)
                 print("Body: \(strData)")
 
                 do {
-                    let json: NSDictionary! = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as! NSDictionary
+                    let json: NSDictionary! = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as! NSDictionary
                     if (httpResp.statusCode == 200 && json != nil) {
                         if let s = succeded {
                             s(json["talks"] as! NSArray!)

@@ -14,7 +14,7 @@ func arbitraryArray<X: Arbitrary>() -> [X] {
     return arr
 }
 
-func check<X: Arbitrary>(message: String, prop: [X] -> Bool) -> (Bool) {
+func check<X: Arbitrary>(_ message: String, prop: ([X]) -> Bool) -> (Bool) {
     let instance = ArbitraryI(arbitrary: arbitraryArray, smaller: { (x: [X]) in x.smaller() })
     return checkHelper(instance, prop: prop, message: message)
 }
