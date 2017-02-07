@@ -16,7 +16,7 @@ class VoteUploader: NSObject
     func submitVotes(_ votes: NSDictionary, succeded: (() -> Void)?, failed: ((_ error: NSError?) -> Void)? = nil )
     {
         print("Votes: \(votes)")
-        let request = NSMutableURLRequest(url: URL(string: updateURL)!)
+        var request = URLRequest(url: URL(string: updateURL)!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         print("Request: \(request)")
@@ -37,7 +37,7 @@ class VoteUploader: NSObject
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             let httpResp = response as! HTTPURLResponse
             print("Response: \(response)")
-            let strData = NSString(data: data!, encoding: String.Encoding.utf8)
+            let strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             print("Body: \(strData)")
 //            var err: NSError?
 //            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err)
@@ -47,9 +47,7 @@ class VoteUploader: NSObject
                 }
             }
             else {
-                if let f = failed {
-                    f(error: error)
-                }
+                failed?(error as NSError?)
             }
         })
         
@@ -58,7 +56,7 @@ class VoteUploader: NSObject
     
     func getTalks(_ succeded: ((NSArray) -> Void)?, failed: ((_ error: NSError?) -> Void)? = nil )
     {
-        let request = NSMutableURLRequest(url: URL(string: talksURL)!)
+        var request = URLRequest(url: URL(string: talksURL)!)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         print("Request: \(request)")
@@ -70,7 +68,7 @@ class VoteUploader: NSObject
             print("Error: \(error)")
             
             if let httpResp = response as? HTTPURLResponse {
-                let strData = NSString(data: data!, encoding: String.Encoding.utf8)
+                let strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
                 print("Body: \(strData)")
 
                 do {
@@ -81,15 +79,11 @@ class VoteUploader: NSObject
                         }
                     }
                     else {
-                        if let f = failed {
-                            f(error: error)
-                        }
+                        failed?(error as NSError?)
                     }
                 }
                 catch {
-                    if let f = failed {
-                        f(error: nil)
-                    }
+                    failed?(error as NSError?)
                 }
             }
         })

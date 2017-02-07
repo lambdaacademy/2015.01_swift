@@ -46,7 +46,8 @@ class TalksViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         if let tss = talks {
-            cell.textLabel?.text = tss[indexPath.row]["title"] as! String?
+            let dict = tss[indexPath.row] as! NSDictionary
+            cell.textLabel?.text = dict.value(forKey: "title") as! String?
         }
         return cell
     }
@@ -54,9 +55,10 @@ class TalksViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let tss = talks {
             let vc: ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Voting") as! ViewController
-            let talkId = tss[indexPath.row]["id"] as! Int
+            let dict = tss[indexPath.row] as! NSDictionary
+            let talkId = dict.value(forKey: "id") as! Int
             vc.talkId = "\(talkId)"
-            vc.talkName = tss[indexPath.row]["title"] as! String?
+            vc.talkName = dict.value(forKey: "title") as! String?
             self.present(vc, animated: true, completion: nil)
         }
         
