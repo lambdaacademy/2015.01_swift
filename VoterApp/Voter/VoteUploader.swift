@@ -8,8 +8,10 @@
 
 import Foundation
 
-let updateURL = "http://xmpp.lambdadays.org/talk_api/update"
-let talksURL = "http://xmpp.lambdadays.org/talk_api/index"
+
+
+let updateURL = "http://voting.erlang-solutions.com/talk_api/update"
+let talksURL = "http://voting.erlang-solutions.com/talk_api/index"
 
 class VoteUploader: NSObject
 {
