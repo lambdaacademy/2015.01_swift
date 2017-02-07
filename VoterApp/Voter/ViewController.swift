@@ -76,26 +76,35 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
         self.activityIndicator.startAnimating()
         self.view.isUserInteractionEnabled = false
         self.talkTitleLabel.text = "\(self.talkName) - submiting votes..."
-        api.submitVotes(apiDic, succeded: {
-            let a = UIAlertView()
-            a.title = "Succeded"
-            a.message = "Votes data has been properly submited"
-            a.delegate = self
-            a.addButton(withTitle: "OK")
-            a.show()
-            self.talkTitleLabel.text = self.talkName
-        }, failed: { (error) in
-            self.activityIndicator.stopAnimating()
-            self.view.isUserInteractionEnabled = true
+        api.submitVotes(apiDic as NSDictionary, succeded: {
             
-            let a = UIAlertView()
-            a.title = "Failed"
-            if let e = error {
-                a.message = e.localizedDescription
-            }
-            a.addButton(withTitle: "OK")
-            a.show()
-            self.talkTitleLabel.text = self.talkName            
+            OperationQueue.main.addOperation({ 
+                let a = UIAlertView()
+                a.title = "Succeded"
+                a.message = "Votes data has been properly submited"
+                a.delegate = self
+                a.addButton(withTitle: "OK")
+                a.show()
+                self.talkTitleLabel.text = self.talkName
+            })
+            
+            
+        }, failed: { (error) in
+            
+            OperationQueue.main.addOperation({
+                self.activityIndicator.stopAnimating()
+                self.view.isUserInteractionEnabled = true
+                
+                let a = UIAlertView()
+                a.title = "Failed"
+                if let e = error {
+                    a.message = e.localizedDescription
+                }
+                a.addButton(withTitle: "OK")
+                a.show()
+                self.talkTitleLabel.text = self.talkName
+            })
+            
         })
     }
     
