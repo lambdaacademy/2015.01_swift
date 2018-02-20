@@ -8,14 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegate {
+class ViewController: UIViewController, UIAlertViewDelegate {
     var talkId: String!
     var talkName: String!
     lazy var vm: VoteManager = {
        return VoteManager(tId: self.talkId)
     }()
     
-    @IBOutlet weak var pieChart: XYPieChart!
     @IBOutlet weak var loveButton: UIButton!
     @IBOutlet weak var neutralButton: UIButton!
     @IBOutlet weak var hateButton: UIButton!
@@ -43,19 +42,16 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
     @IBAction func smileButtonPressed(_ sender: UIButton) {
         self.vm.makeVote(Vote.like(Date(), self.talkId))
         self.animateButton(sender)
-        self.pieChart.reloadData();
     }
     
     @IBAction func donnoPressed(_ sender: UIButton) {
         self.vm.makeVote(Vote.neutral(Date(), self.talkId))
         self.animateButton(sender)
-        self.pieChart.reloadData();
     }
     
     @IBAction func cryingPressed(_ sender: UIButton) {
         self.vm.makeVote(Vote.hate(Date(), self.talkId))
         self.animateButton(sender)
-        self.pieChart.reloadData();
     }
     
     @IBAction func lambdaLogoLongPressed(_ sender: AnyObject) {
@@ -155,37 +151,6 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
                 btn.layoutIfNeeded()
             })
         })
-    }
-    
-    // Pie Chart
-    func numberOfSlices(in pieChart: XYPieChart!) -> UInt {
-        return 3
-    }
-    
-    func pieChart(_ pieChart: XYPieChart!, valueForSliceAt index: UInt) -> CGFloat {
-        switch (index) {
-        case 0:
-            return CGFloat(self.vm.likes().count)
-        case 1:
-            return CGFloat(self.vm.neutrals().count)
-        case 2:
-            return CGFloat(self.vm.hates().count)
-        default:
-            return 0
-        }
-    }
-    
-    func pieChart(_ pieChart: XYPieChart!, colorForSliceAt index: UInt) -> UIColor! {
-        switch (index) {
-        case 0:
-            return UIColor.green.withAlphaComponent(0.6)
-        case 1:
-            return UIColor.blue.withAlphaComponent(0.6)
-        case 2:
-            return UIColor.red.withAlphaComponent(0.6)
-        default:
-            return nil
-        }
     }
 }
 

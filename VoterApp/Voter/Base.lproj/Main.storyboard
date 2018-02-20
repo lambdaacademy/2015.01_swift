@@ -70,7 +70,7 @@
             </objects>
             <point key="canvasLocation" x="-651" y="238"/>
         </scene>
-        <!--Data Source-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="Voting" id="BYZ-38-t0r" customClass="ViewController" customModule="Voter" customModuleProvider="target" sceneMemberID="viewController">
@@ -128,18 +128,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NdX-nz-q6P" customClass="XYPieChart">
-                                <rect key="frame" x="413" y="594" width="200" height="150"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="N8q-qF-TX8"/>
-                                    <constraint firstAttribute="width" constant="200" id="i9Q-tf-vJ7"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="wvo-Wv-kTB"/>
-                                </connections>
-                            </view>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="lambda_academy_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="VZg-EI-d24">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="lambda_academy_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="VZg-EI-d24">
                                 <rect key="frame" x="46" y="605" width="240" height="128"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -158,14 +147,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NdX-nz-q6P" secondAttribute="bottom" constant="24" id="JHL-l5-YoM"/>
                             <constraint firstAttribute="centerY" secondItem="Vdt-1s-Kip" secondAttribute="centerY" id="Mt0-z1-aP7"/>
-                            <constraint firstAttribute="centerX" secondItem="NdX-nz-q6P" secondAttribute="centerX" constant="-0.5" id="XxA-nt-EBW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YYv-e3-2oM" secondAttribute="centerX" constant="150" id="ab8-U5-tWH"/>
                             <constraint firstAttribute="centerY" secondItem="YYv-e3-2oM" secondAttribute="centerY" id="bDk-ko-qVf"/>
                             <constraint firstItem="rRl-Vr-sSj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="150" id="dpy-xh-P6M"/>
                             <constraint firstItem="VZg-EI-d24" firstAttribute="centerX" secondItem="rRl-Vr-sSj" secondAttribute="centerX" id="eux-Ts-Lqa"/>
-                            <constraint firstItem="VZg-EI-d24" firstAttribute="centerY" secondItem="NdX-nz-q6P" secondAttribute="centerY" id="f5n-ds-FnD"/>
                             <constraint firstItem="Vdt-1s-Kip" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="k6t-ad-jkR"/>
                             <constraint firstAttribute="centerY" secondItem="rRl-Vr-sSj" secondAttribute="centerY" id="u9n-m3-XB2"/>
                         </constraints>
@@ -181,7 +167,6 @@
                         <outlet property="neutralButton" destination="Vdt-1s-Kip" id="XJX-01-nn7"/>
                         <outlet property="neutralHeightConstraint" destination="V8z-LI-aTR" id="XJv-ym-Dof"/>
                         <outlet property="neutralWidthConstraint" destination="rXi-zy-Jmz" id="kRV-nv-FT0"/>
-                        <outlet property="pieChart" destination="NdX-nz-q6P" id="dAg-hC-Ctq"/>
                         <outlet property="talkTitleLabel" destination="ry7-u9-Th1" id="xsl-Di-dZ4"/>
                     </connections>
                 </viewController>

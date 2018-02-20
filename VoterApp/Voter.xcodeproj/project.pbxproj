@@ -12,7 +12,6 @@
 		AF734F051A7966B60093C9F7 /* Array+QuickCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF734F011A79659E0093C9F7 /* Array+QuickCheck.swift */; };
 		AF76CF361A49CF2600287DC1 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD1A6561A3E2A9400F5699C /* Vote.swift */; };
 		AF76CF371A49CF2900287DC1 /* VoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD1A6541A3E25C200F5699C /* VoteManager.swift */; };
-		AF80005F1A3E4CE9001FB2F1 /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AF80005E1A3E4CE9001FB2F1 /* XYPieChart.m */; };
 		AF8AA3F81A9BB4A700A9D255 /* VoteUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8AA3F71A9BB4A700A9D255 /* VoteUploader.swift */; };
 		AF8AA3FA1A9BB8DF00A9D255 /* TalksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8AA3F91A9BB8DF00A9D255 /* TalksViewController.swift */; };
 		AFCC56531A3E17AB00400DCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCC56521A3E17AB00400DCA /* AppDelegate.swift */; };
@@ -52,9 +51,6 @@
 		315044381A82816A00FDCFF9 /* lambda_academy_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lambda_academy_logo.png; sourceTree = "<group>"; };
 		AF734F001A79659E0093C9F7 /* Numbers+QuickCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Numbers+QuickCheck.swift"; sourceTree = "<group>"; };
 		AF734F011A79659E0093C9F7 /* Array+QuickCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+QuickCheck.swift"; sourceTree = "<group>"; };
-		AF80005C1A3E4CE8001FB2F1 /* Voter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Voter-Bridging-Header.h"; sourceTree = "<group>"; };
-		AF80005D1A3E4CE9001FB2F1 /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
-		AF80005E1A3E4CE9001FB2F1 /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
 		AF8AA3F71A9BB4A700A9D255 /* VoteUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteUploader.swift; sourceTree = "<group>"; };
 		AF8AA3F91A9BB8DF00A9D255 /* TalksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalksViewController.swift; sourceTree = "<group>"; };
 		AFCC564D1A3E17AB00400DCA /* Voter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +100,6 @@
 		AF8000571A3E4C9D001FB2F1 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				AF8000581A3E4C9D001FB2F1 /* XYPieChart */,
 				AFEBF2A51A78193700EC59FA /* Helpers.swift */,
 				AFCE45BE1A78263400D7263F /* QuickCheck.swift */,
 				AFCE45C11A78283600D7263F /* QuickCheckHelpers.swift */,
@@ -113,16 +108,6 @@
 				AF734F011A79659E0093C9F7 /* Array+QuickCheck.swift */,
 			);
 			path = External;
-			sourceTree = "<group>";
-		};
-		AF8000581A3E4C9D001FB2F1 /* XYPieChart */ = {
-			isa = PBXGroup;
-			children = (
-				AF80005D1A3E4CE9001FB2F1 /* XYPieChart.h */,
-				AF80005E1A3E4CE9001FB2F1 /* XYPieChart.m */,
-				AF80005C1A3E4CE8001FB2F1 /* Voter-Bridging-Header.h */,
-			);
-			path = XYPieChart;
 			sourceTree = "<group>";
 		};
 		AFCC56441A3E17AB00400DCA = {
@@ -330,7 +315,6 @@
 				AF8AA3F81A9BB4A700A9D255 /* VoteUploader.swift in Sources */,
 				AFD1A6551A3E25C200F5699C /* VoteManager.swift in Sources */,
 				AFCC56531A3E17AB00400DCA /* AppDelegate.swift in Sources */,
-				AF80005F1A3E4CE9001FB2F1 /* XYPieChart.m in Sources */,
 				AFD1A6571A3E2A9400F5699C /* Vote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,7 +453,6 @@
 				INFOPLIST_FILE = Voter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "External/XYPieChart/Voter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -483,7 +466,6 @@
 				INFOPLIST_FILE = Voter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "External/XYPieChart/Voter-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
