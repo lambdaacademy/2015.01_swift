@@ -10,8 +10,8 @@ import Foundation
 
 
 
-let updateURL = "http://voting.erlang-solutions.com/talk_api/update"
-let talksURL = "http://voting.erlang-solutions.com/talk_api/index"
+let updateURL = "http://xmpp.lambdadays.org/talk_api/update"
+let talksURL = "http://xmpp.lambdadays.org/talk_api/index"
 
 class VoteUploader: NSObject
 {
@@ -37,13 +37,15 @@ class VoteUploader: NSObject
         
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
-            let httpResp = response as! HTTPURLResponse
+            let httpResp = response as? HTTPURLResponse
             print("Response: \(response)")
-            let strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("Body: \(strData)")
+            if let data = data {
+                let strData = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+                print("Body: \(strData)")
+            }
 //            var err: NSError?
 //            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err)
-            if (httpResp.statusCode == 200) {
+            if (httpResp?.statusCode == 200) {
                 if let s = succeded {
                     s()
                 }
