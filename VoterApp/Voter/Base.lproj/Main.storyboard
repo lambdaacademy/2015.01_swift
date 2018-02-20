@@ -1,12 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="UdG-e4-EzM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UdG-e4-EzM">
+    <device id="ipad9_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Talks View Controller-->
         <scene sceneID="Eds-ae-iHE">
@@ -17,12 +26,12 @@
                         <viewControllerLayoutGuide type="bottom" id="UwA-c9-iEi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Yaa-Ki-0lp">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="l5O-vB-BNo">
                                 <rect key="frame" x="16" y="106" width="568" height="494"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="UdG-e4-EzM" id="PaM-Ii-OzS"/>
                                     <outlet property="delegate" destination="UdG-e4-EzM" id="kqU-bE-CIP"/>
@@ -35,10 +44,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SqJ-B8-BeY">
-                                <rect key="frame" x="290" y="78" width="20" height="20"/>
+                                <rect key="frame" x="502" y="78" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="UwA-c9-iEi" firstAttribute="top" secondItem="l5O-vB-BNo" secondAttribute="bottom" id="15I-1l-ECg"/>
                             <constraint firstItem="wew-pJ-TEo" firstAttribute="top" secondItem="Q7d-Bx-5Vv" secondAttribute="bottom" constant="20" id="FBI-5q-1qg"/>
@@ -80,7 +89,7 @@
                                     <constraint firstAttribute="height" constant="256" id="hVf-3P-ek2"/>
                                 </constraints>
                                 <state key="normal" title=" " image="love.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="smileButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OT6-Qe-1yV"/>
@@ -93,7 +102,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="256" id="rXi-zy-Jmz"/>
                                 </constraints>
                                 <state key="normal" title=" " image="donno.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="donnoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tce-SN-HFA"/>
@@ -106,7 +115,7 @@
                                     <constraint firstAttribute="height" constant="256" id="rWo-NK-0vu"/>
                                 </constraints>
                                 <state key="normal" title=" " image="crying.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="cryingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iRK-A7-mCB"/>
@@ -114,13 +123,14 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;Talk Title&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ry7-u9-Th1">
                                 <rect key="frame" x="171" y="111" width="682" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NdX-nz-q6P" customClass="XYPieChart">
                                 <rect key="frame" x="413" y="594" width="200" height="150"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="N8q-qF-TX8"/>
                                     <constraint firstAttribute="width" constant="200" id="i9Q-tf-vJ7"/>
@@ -151,9 +161,10 @@
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jAh-ih-Vcu">
                                 <rect key="frame" x="502" y="217" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="jZs-lO-518" firstAttribute="centerX" secondItem="YYv-e3-2oM" secondAttribute="centerX" id="FAg-Ae-j24"/>
@@ -175,8 +186,6 @@
                             <constraint firstAttribute="centerY" secondItem="rRl-Vr-sSj" secondAttribute="centerY" id="u9n-m3-XB2"/>
                         </constraints>
                     </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
                         <outlet property="activityIndicator" destination="jAh-ih-Vcu" id="8q4-KI-Msd"/>
                         <outlet property="hateButton" destination="YYv-e3-2oM" id="a0c-A9-CJg"/>
