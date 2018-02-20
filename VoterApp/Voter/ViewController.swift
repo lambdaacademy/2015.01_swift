@@ -19,8 +19,6 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
     @IBOutlet weak var loveButton: UIButton!
     @IBOutlet weak var neutralButton: UIButton!
     @IBOutlet weak var hateButton: UIButton!
-    @IBOutlet weak var medianImage: UIImageView!
-    @IBOutlet weak var medianLabel: UILabel!
     @IBOutlet weak var talkTitleLabel: UILabel!
     
     @IBOutlet weak var likeWidthConstraint: NSLayoutConstraint!
@@ -157,21 +155,6 @@ class ViewController: UIViewController, XYPieChartDataSource, UIAlertViewDelegat
                 btn.layoutIfNeeded()
             })
         })
-        
-        switch(self.vm.median) {
-        case Vote.like :
-            medianImage.image = UIImage(named: "love.png")
-            medianLabel.isHidden = false
-        case Vote.neutral :
-            medianImage.image = UIImage(named: "donno.png")
-            medianLabel.isHidden = false
-        case Vote.hate :
-            medianImage.image = UIImage(named: "crying.png")
-            medianLabel.isHidden = false
-        default :
-            medianImage.image = nil
-            medianLabel.isHidden = true
-        }
     }
     
     // Pie Chart

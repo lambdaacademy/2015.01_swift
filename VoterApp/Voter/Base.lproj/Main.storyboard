@@ -139,9 +139,6 @@
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="wvo-Wv-kTB"/>
                                 </connections>
                             </view>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jZs-lO-518">
-                                <rect key="frame" x="689" y="650" width="339" height="38"/>
-                            </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="lambda_academy_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="VZg-EI-d24">
                                 <rect key="frame" x="46" y="605" width="240" height="128"/>
                                 <gestureRecognizers/>
@@ -153,12 +150,6 @@
                                     <outletCollection property="gestureRecognizers" destination="qSN-er-ndb" appends="YES" id="9mp-Rw-r9U"/>
                                 </connections>
                             </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Median of votes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsH-3S-7sb">
-                                <rect key="frame" x="689" y="696" width="339" height="14"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jAh-ih-Vcu">
                                 <rect key="frame" x="502" y="217" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -167,22 +158,15 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="jZs-lO-518" firstAttribute="centerX" secondItem="YYv-e3-2oM" secondAttribute="centerX" id="FAg-Ae-j24"/>
-                            <constraint firstItem="jZs-lO-518" firstAttribute="centerY" secondItem="NdX-nz-q6P" secondAttribute="centerY" id="I9C-oP-Vbi"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NdX-nz-q6P" secondAttribute="bottom" constant="24" id="JHL-l5-YoM"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jZs-lO-518" secondAttribute="bottom" constant="80" id="Jga-Hv-uUA"/>
                             <constraint firstAttribute="centerY" secondItem="Vdt-1s-Kip" secondAttribute="centerY" id="Mt0-z1-aP7"/>
-                            <constraint firstItem="OsH-3S-7sb" firstAttribute="top" secondItem="jZs-lO-518" secondAttribute="bottom" constant="8" id="NKK-zu-Vxw"/>
-                            <constraint firstItem="jZs-lO-518" firstAttribute="centerX" secondItem="OsH-3S-7sb" secondAttribute="centerX" id="Vo7-gz-bbw"/>
                             <constraint firstAttribute="centerX" secondItem="NdX-nz-q6P" secondAttribute="centerX" constant="-0.5" id="XxA-nt-EBW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YYv-e3-2oM" secondAttribute="centerX" constant="150" id="ab8-U5-tWH"/>
                             <constraint firstAttribute="centerY" secondItem="YYv-e3-2oM" secondAttribute="centerY" id="bDk-ko-qVf"/>
                             <constraint firstItem="rRl-Vr-sSj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="150" id="dpy-xh-P6M"/>
                             <constraint firstItem="VZg-EI-d24" firstAttribute="centerX" secondItem="rRl-Vr-sSj" secondAttribute="centerX" id="eux-Ts-Lqa"/>
                             <constraint firstItem="VZg-EI-d24" firstAttribute="centerY" secondItem="NdX-nz-q6P" secondAttribute="centerY" id="f5n-ds-FnD"/>
-                            <constraint firstItem="jZs-lO-518" firstAttribute="leading" secondItem="NdX-nz-q6P" secondAttribute="trailing" constant="76" id="jK7-72-21n"/>
                             <constraint firstItem="Vdt-1s-Kip" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="k6t-ad-jkR"/>
-                            <constraint firstItem="jZs-lO-518" firstAttribute="width" secondItem="OsH-3S-7sb" secondAttribute="width" id="qfY-xN-OgN"/>
                             <constraint firstAttribute="centerY" secondItem="rRl-Vr-sSj" secondAttribute="centerY" id="u9n-m3-XB2"/>
                         </constraints>
                     </view>
@@ -194,8 +178,6 @@
                         <outlet property="likeHeightConstraint" destination="hVf-3P-ek2" id="RuX-ZF-1aS"/>
                         <outlet property="likeWidthConstraint" destination="Waf-Oj-J9E" id="LEX-ez-uuW"/>
                         <outlet property="loveButton" destination="rRl-Vr-sSj" id="zMI-oC-SXa"/>
-                        <outlet property="medianImage" destination="jZs-lO-518" id="qIp-ah-Px1"/>
-                        <outlet property="medianLabel" destination="OsH-3S-7sb" id="wiL-uo-nev"/>
                         <outlet property="neutralButton" destination="Vdt-1s-Kip" id="XJX-01-nn7"/>
                         <outlet property="neutralHeightConstraint" destination="V8z-LI-aTR" id="XJv-ym-Dof"/>
                         <outlet property="neutralWidthConstraint" destination="rXi-zy-Jmz" id="kRV-nv-FT0"/>
