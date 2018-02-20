@@ -32,7 +32,6 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     // Life cycle
     override func viewDidLoad() {
         self.talkTitleLabel.text = self.talkName
-        self.pieChart.reloadData()
         self.loveButton.contentMode = UIViewContentMode.center
         self.neutralButton.contentMode = UIViewContentMode.center
         self.hateButton.contentMode = UIViewContentMode.center
